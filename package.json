@@ -1,0 +1,29 @@
+{
+  "name": "wzrd-server",
+  "version": "1.0.0",
+  "description": "server and db connection for wzrd url shortener",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:server": "nodemon server/index.js",
+    "create-pg": "psql -U postgres < ./db/schemas.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huntertread/wzrd-server.git"
+  },
+  "author": "Hunter Treadaway",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huntertread/wzrd-server/issues"
+  },
+  "homepage": "https://github.com/huntertread/wzrd-server#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.3",
+    "pg": "^8.0.3"
+  }
+}
