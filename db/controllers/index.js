@@ -2,7 +2,9 @@ const pool = require('../pool.js');
 
 const dbcontrollers = {
   getUrl: (req, res) => {
-    const id = parseInt(req.params.id);
+    // const id = parseInt(req.params.id);
+    const id = req.params.id.toString()
+    // console.log(req.params.id)
     pool.query(
       'SELECT * FROM urls WHERE shorturl = $1;', 
       [id], 
