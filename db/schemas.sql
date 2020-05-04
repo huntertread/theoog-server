@@ -9,14 +9,13 @@ CREATE DATABASE wzrd
 
 CREATE TABLE users (
   id serial NOT NULL,
-  username VARCHAR, -- should have client validation
-  password VARCHAR, -- should be hashed and have validiation on the front end
+  username VARCHAR,
+  password VARCHAR,
   email VARCHAR
   -- urls ARRAY -- foreign key array
 );
 
-INSERT INTO users (username, password, email) VALUES ('anon', 'anon', 'anon');
-
+INSERT INTO users (username, password, email) VALUES ('anon', '2ae66f90b7788ab8950e8f81b829c947', 'anon');
 CREATE TABLE urls (
   id serial NOT NULL,
   owner VARCHAR, -- foriegn key
