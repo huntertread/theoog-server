@@ -2,17 +2,19 @@ const pool = require('../pool.js');
 
 const dbcontrollers = {
   getUrl: (req, res) => {
-    // const id = parseInt(req.params.id);
     const id = req.params.id.toString()
-    // console.log(req.params.id)
     pool.query(
-      'SELECT * FROM urls WHERE shorturl = $1;', 
+      'SELECT * FROM urls WHERE id = $1;',
       [id], 
       (err, results) => {
         if (err) {
           res.status(404).send(err)
+        } else {
+          if (results.rows === undefined) {
+            res.status(404).send('link does not exist')
+          }
+          res.status(200).send(results.rows)
         }
-        res.status(200).send(results.rows)
       }
     )
   },
