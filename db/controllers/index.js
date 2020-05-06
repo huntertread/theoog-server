@@ -53,7 +53,6 @@ const dbcontrollers = {
         if (err) {
           res.status(404).send(err)
         }
-        console.log(results)
         res.status(200).send(results.rows)
       }
     )
