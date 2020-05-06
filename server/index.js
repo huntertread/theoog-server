@@ -9,7 +9,7 @@ app.use(cors({
   origin: [
     "http://localhost:3000", 
     "https://huntertread.github.io/wzrd-client", 
-    "68.170.64.179", 
+    // "68.170.64.179", 
     "185.199.108.153", 
     "185.199.109.153", 
     "185.199.110.153", 
