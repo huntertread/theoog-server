@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:server": "nodemon server/index.js",
     "create-db-local": "psql -U postgres < ./db/schemas.sql",
-    "create-db-ec2": "sudo psql -U postgres < ./db/schemas.sql"
+    "create-db-ec2": "sudo -u postgres psql < ./db/schemas.sql"
   },
   "repository": {
     "type": "git",
