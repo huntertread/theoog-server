@@ -5,9 +5,9 @@ const morgan = require('morgan');
 const router = require('./router/router.js');
 
 const app = express();
-app.use(cors({
-  origin: ["http://localhost:3000", "68.170.64.179"]
-}));
+// app.use(cors({
+//   origin: ["http://localhost:3000", "68.170.64.179"]
+// }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
