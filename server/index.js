@@ -7,6 +7,7 @@ const router = require('./router/router.js');
 const app = express();
 app.use(cors({
   origin: [
+    "https://theoog.net",
     "http://localhost:3000", 
     "https://huntertread.github.io/wzrd-client", 
     "68.170.64.179", 
