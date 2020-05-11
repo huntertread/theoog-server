@@ -4,6 +4,13 @@ const cors = require('cors');
 const morgan = require('morgan');
 const router = require('./router/router.js');
 
+const https = require('https');
+
+const options = {
+  key: false.readFileSync('../server-key.pem'),
+  cert: false.readFileSync('../server-cert.pem')
+}
+
 const app = express();
 app.use(cors({
   origin: [
@@ -23,6 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use('/', router);
 const port = 3333;
-app.listen(port, () => {
+// app.listen(port, () => {
+https.createServer(options, app).listen(port, function(){
     console.log('app is listening on port:', port);
 });
