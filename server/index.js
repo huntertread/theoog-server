@@ -7,8 +7,8 @@ const router = require('./router/router.js');
 const https = require('https');
 
 const options = {
-  key: false.readFileSync('../server-key.pem'),
-  cert: false.readFileSync('../server-cert.pem')
+  key: fs.readFileSync('../server-key.pem'),
+  cert: fs.readFileSync('../server-cert.pem')
 }
 
 const app = express();
