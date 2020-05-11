@@ -3,14 +3,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const router = require('./router/router.js');
-const fs = require('fs');
+// const fs = require('fs');
 
-const https = require('https');
+// const https = require('https');
 
-const options = {
-  key: fs.readFileSync('../server-key.pem'),
-  cert: fs.readFileSync('../server-cert.pem')
-}
+// const options = {
+//   key: fs.readFileSync('../server-key.pem'),
+//   cert: fs.readFileSync('../server-cert.pem')
+// }
 
 const app = express();
 app.use(cors({
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use('/', router);
 const port = 3333;
-// app.listen(port, () => {
-https.createServer(options, app).listen(port, function(){
+app.listen(port, () => {
+// https.createServer(options, app).listen(port, function(){
     console.log('app is listening on port:', port);
 });
