@@ -3,6 +3,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const router = require('./router/router.js');
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/api.theoog.net/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/api.theoog.net/fullchain.pem')
+}
 
 const app = express();
 app.use(cors({
@@ -24,6 +31,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use('/', router);
 const port = 3333;
-app.listen(port, () => {
+// app.listen(port, () => {
+https.createServer(options, app).listen(port, () => {
     console.log('app is listening on port:', port);
 });
