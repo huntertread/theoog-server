@@ -25,5 +25,6 @@ coverage
 # postgres pool connection
 db/hiddenpool.js
 
-
+# environment variables
+.env
 
