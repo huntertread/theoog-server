@@ -16,6 +16,7 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (username, password, email) VALUES ('anon', '2ae66f90b7788ab8950e8f81b829c947', 'anon');
+
 CREATE TABLE urls (
   id serial NOT NULL,
   owner VARCHAR, -- foriegn key
