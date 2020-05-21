@@ -12,16 +12,10 @@ const app = express();
 app.use(helmet());
 app.use(cors({
   origin: [
-    "http://theoog.net",
-    "https://theoog.net",
-    "http://localhost:3000",
-    "https://huntertread.github.io/wzrd-client",
-    "68.170.64.179",
-    "185.199.108.153",
-    "185.199.109.153",
-    "185.199.110.153",
-    "185.199.111.153",
-    "54.151.33.195"
+    process.env.clientip,
+    process.env.localip,
+    process.env.http,
+    process.env.https
   ]
 }));
 app.use(bodyParser.json());
