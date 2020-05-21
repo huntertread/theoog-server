@@ -15,7 +15,9 @@ app.use(cors({
     process.env.clientip,
     process.env.localip,
     process.env.http,
-    process.env.https
+    process.env.https,
+    process.env.httpw,
+    process.env.httpsw
   ]
 }));
 app.use(bodyParser.json());
