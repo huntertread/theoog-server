@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
 const router = require('./router/router.js');
+const LocalStrategy = require('passport-local').Strategy;
 
 dotenv.config();
 
@@ -22,6 +23,17 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+// passport
+app.use(require('express-session')({
+  secret: 'keyboard cowboy',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+// passport end
+
 app.use(morgan('dev'));
 app.use('/', router);
 const port = process.env.serverport;
