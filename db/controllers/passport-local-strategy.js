@@ -11,8 +11,8 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
   async function loginAttempt() {	
 	const client = await pool.connect()
 	try{
-	  await client.query('BEGIN')
-	  var currentAccountsData = await JSON.stringify(client.query('SELECT id, "username", "password" FROM "users" WHERE "username"=$1', [username], function(err, result) {		
+	//   await client.query('BEGIN')
+	  client.query('SELECT * from users WHERE username = $1', [username], function(err, result) {		
 		if(err) {
 		  return done(err)
 		}	
@@ -24,6 +24,7 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
 		else{
           let pass = md5(password)
           if (pass === result.rows[0].password) {
+			  console.log('success')
             return done(null, [{username: result.rows[0].username}]);
           } else if (pass !== result.rows[0].password) {
             return done(null, false);
@@ -46,7 +47,7 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
 		// 	}
 		//   });
         }
-	  }))
+	  })
 	}
 	catch(e){throw (e);}
   };	
