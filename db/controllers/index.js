@@ -74,14 +74,14 @@ const dbcontrollers = {
   checkSessionStatus: (req, res) => {
     if (req.isAuthenticated()) {
       console.log(req.isAuthenticated())
-      res.status(200).send(res.rows)
+      res.status(200)
       console.log('authenticated')
-      return true
+      // return true
     } else {
       console.log(req.isAuthenticated())
-      res.status(404).send(res.rows)
+      res.status(404)
       console.log('not authed')
-      return false
+      // return false
     }
   },
   submitLoginForm: (req, res) => {
@@ -90,11 +90,11 @@ const dbcontrollers = {
     if (req.body.remember) {
       req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000 // cookie expires after 30 days
       console.log('remembered')
-      res.status(200).send('remembered')
+      res.status(200).send(req.user)
     } else {
       req.session.cookie.expires = false // cookie expires at end of session
       console.log('expires')
-      res.status(200).send('expires')
+      res.status(200).send(req.user)
     }
   },
   logout: (req, res) => {
