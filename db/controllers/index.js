@@ -90,11 +90,11 @@ const dbcontrollers = {
     if (req.body.remember) {
       req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000 // cookie expires after 30 days
       console.log('remembered')
-      res.status(200).send(res)
+      res.status(200).send('remembered')
     } else {
       req.session.cookie.expires = false // cookie expires at end of session
       console.log('expires')
-      res.status(200).send(res)
+      res.status(200).send('expires')
     }
   },
   logout: (req, res) => {
