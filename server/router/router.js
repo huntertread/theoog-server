@@ -16,4 +16,11 @@ router.route('/')
 router.route('/register')
   .post(dbcontroller.postNewUser)
 
+router.route('/login')
+  .get(dbcontroller.checkSessionStatus)
+  .post(dbcontroller.submitLoginForm)
+
+router.route('/logout')
+  .get(dbcontroller.logout)
+
 module.exports = router;

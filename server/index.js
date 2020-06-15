@@ -5,7 +5,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
 const router = require('./router/router.js');
-const LocalStrategy = require('passport-local').Strategy;
+// const pool = require('../db/pool');
+// const LocalStrategy = require('passport-local').Strategy;
 
 dotenv.config();
 

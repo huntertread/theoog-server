@@ -69,6 +69,34 @@ const dbcontrollers = {
         res.status(200).send(results.rows)
       }
     )
+  },
+  checkSessionStatus: (req, res) => {
+    if (req.isAuthenticated()) {
+      res.status(200).send(results.rows)
+      return true
+    } else {
+      res.status(200)
+      return false
+    }
+  },
+  submitLoginForm: (req, res) => {
+    passport.authenticate('local')
+    if (req.body.remember) {
+      req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000 // cookie expires after 30 days
+      console.log('remembered')
+      res.status(200).send(results.rows)
+    } else {
+      req.session.cookie.expires = false // cookie expires at end of session
+      console.log('expires')
+      res.status(200).send(results.rows)
+    }
+  },
+  logout: (req, res) => {
+    console.log('logout route')
+    console.log(req.isAuthenticated());
+    req.logout()
+    console.log(req.isAuthenticated());
+    res.status(200)
   }
 }
 
