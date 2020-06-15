@@ -72,10 +72,10 @@ const dbcontrollers = {
   },
   checkSessionStatus: (req, res) => {
     if (req.isAuthenticated()) {
-      res.status(200).send(results.rows)
+      res.status(200).send(true)
       return true
     } else {
-      res.status(200)
+      res.status(400).send(false)
       return false
     }
   },
