@@ -1,5 +1,5 @@
 const pool = require('../pool.js');
-const passport = require('passport');
+// const passport = require('passport');
 
 const dbcontrollers = {
   getUrl: (req, res) => {
@@ -71,17 +71,18 @@ const dbcontrollers = {
       }
     )
   },
-  checkSessionStatus: (req, res) => {
+  checkSessionStatus: (req, res, next) => {
     if (req.isAuthenticated()) {
       console.log(req.isAuthenticated())
       res.status(200)
       console.log('authenticated')
-      // return true
+      next()
+      // returns true
     } else {
       console.log(req.isAuthenticated())
       res.status(404)
       console.log('not authed')
-      // return false
+      // returns false
     }
   },
   submitLoginForm: (req, res) => {
