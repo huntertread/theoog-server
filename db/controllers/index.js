@@ -1,4 +1,5 @@
 const pool = require('../pool.js');
+const passport = require('passport');
 
 const dbcontrollers = {
   getUrl: (req, res) => {
@@ -72,10 +73,10 @@ const dbcontrollers = {
   },
   checkSessionStatus: (req, res) => {
     if (req.isAuthenticated()) {
-      res.status(205).send(true)
+      res.status(200).send(results.rows)
       return true
     } else {
-      res.status(400).send(false)
+      res.status(404).send(results.rows)
       return false
     }
   },
