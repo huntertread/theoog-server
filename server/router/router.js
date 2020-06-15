@@ -18,10 +18,10 @@ router.route('/register')
   .post(dbcontroller.postNewUser)
 
 router.route('/login')
-  .get(passport.authenticate('local'), dbcontroller.checkSessionStatus)
+  .get(dbcontroller.checkSessionStatus)
   .post(passport.authenticate('local'), dbcontroller.submitLoginForm)
 
 router.route('/logout')
-  .get(passport.authenticate('local'), dbcontroller.logout)
+  .get(dbcontroller.logout)
 
 module.exports = router;

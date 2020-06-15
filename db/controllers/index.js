@@ -73,16 +73,16 @@ const dbcontrollers = {
   },
   checkSessionStatus: (req, res, next) => {
     if (req.session.passport.user !== undefined) {
-      
+      req.isAuthenticated()
       res.status(200)
       console.log('authenticated')
-      // next()
-      return true
+      next()
+      // returns true
     } else {
-      
+      req.isAuthenticated()
       res.status(404)
       console.log('not authed')
-      return false
+      // returns false
     }
   },
   submitLoginForm: (req, res) => {
