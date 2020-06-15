@@ -12,7 +12,8 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
 	const client = await pool.connect()
 	try{
 	//   await client.query('BEGIN')
-	  client.query('SELECT * from users WHERE username = $1', [username], function(err, result) {		
+	  client.query('SELECT * from users WHERE username = $1', [username], function(err, result) {
+		console.log(result)	
 		if(err) {
 		  return done(err)
 		}	
@@ -24,7 +25,8 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
 		else{
           let pass = md5(password)
           if (pass === result.rows[0].password) {
-			  console.log('success')
+			console.log('success')
+			console.log(result.rows[0])
             return done(null, [{username: result.rows[0].username}]);
           } else if (pass !== result.rows[0].password) {
             return done(null, false);
