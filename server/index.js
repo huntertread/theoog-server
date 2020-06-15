@@ -34,6 +34,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+require('../db/controllers/passport-local-strategy')
 // passport end
 
 app.use(morgan('dev'));
