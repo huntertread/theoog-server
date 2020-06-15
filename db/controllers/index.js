@@ -72,17 +72,17 @@ const dbcontrollers = {
     )
   },
   checkSessionStatus: (req, res, next) => {
-    if (req.isAuthenticated()) {
-      console.log(req.isAuthenticated())
+    if (req.session.passport.user !== undefined) {
+      
       res.status(200)
       console.log('authenticated')
-      next()
-      // returns true
+      // next()
+      return true
     } else {
-      console.log(req.isAuthenticated())
+      
       res.status(404)
       console.log('not authed')
-      // returns false
+      return false
     }
   },
   submitLoginForm: (req, res) => {
@@ -100,10 +100,10 @@ const dbcontrollers = {
   },
   logout: (req, res) => {
     console.log('logout route')
-    console.log(req.isAuthenticated());
+    // console.log(req.isAuthenticated());
     req.logout()
-    console.log(req.isAuthenticated());
-    res.status(200)
+    // console.log(req.isAuthenticated());
+    res.status(200).send('loggedout')
   }
 }
 
