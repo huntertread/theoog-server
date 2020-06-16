@@ -48,7 +48,7 @@ const dbcontrollers = {
   getExistingUser: (req, res) => {
     const username = req.params.un.toString();
     pool.query(
-      'SELECT * FROM users WHERE username = $1;',
+      'SELECT id, username FROM users WHERE username = $1;',
       [username],
       (err, results) => {
         if (err) {
