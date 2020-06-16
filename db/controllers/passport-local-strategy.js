@@ -21,7 +21,7 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
 		else{
           let pass = md5(password)
           if (pass === result.rows[0].password) {
-            return done(null, [{username: result.rows[0].username}]); // should this set simply to 'user'?
+            return done(null, [{username: result.rows[0].username}, {id: result.rows[0].id}]); // should this set simply to 'user'?
           } else if (pass !== result.rows[0].password) {
             return done(null, false);
           } else {
