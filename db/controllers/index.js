@@ -63,7 +63,7 @@ const dbcontrollers = {
     const {username, password, email} = req.body;
     let passHash = md5(password)
     pool.query(
-      'INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *;',
+      'INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING (id, username);',
       [username, passHash, email],
       (err, results) => {
         if (err) {
