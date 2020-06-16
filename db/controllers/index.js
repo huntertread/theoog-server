@@ -108,13 +108,13 @@ const dbcontrollers = {
       res.status(200).send(req.user)
     }
   },
-  logout: (req, res) => {
-    console.log('logout route')
-    // console.log(req.isAuthenticated());
-    req.logout()
-    // console.log(req.isAuthenticated());
-    res.status(200).send('loggedout')
-  }
+  // logout: (req, res) => {
+  //   console.log('logout route')
+  //   // console.log(req.isAuthenticated());
+  //   req.logout()
+  //   // console.log(req.isAuthenticated());
+  //   res.status(200).send('loggedout')
+  // }
 }
 
 module.exports = dbcontrollers;
