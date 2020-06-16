@@ -18,7 +18,7 @@ router.route('/register')
   .post(dbcontroller.postNewUser)
 
 router.route('/login')
-  .get(dbcontroller.checkSessionMiddleware(), dbcontroller.checkSessionStatus)
+  .get(dbcontroller.checkSessionMiddleware(req, res), dbcontroller.checkSessionStatus)
   .post(passport.authenticate('local'), dbcontroller.submitLoginForm)
 
 router.route('/logout')
