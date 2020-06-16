@@ -87,9 +87,10 @@ const dbcontrollers = {
   },
   checkSessionMiddleware: (req, res, next) => {
     if (req.isAuthenticated()) {
+      console.log('auth middlware, authed')
       next()
     } else {
-      console.log('not authenticated')
+      console.log('auth middleware, not authenticated')
     }
   },
   submitLoginForm: (req, res) => {
