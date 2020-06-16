@@ -4,9 +4,6 @@ const pool = require('../pool');
 const md5 = require('md5');
 
 passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, username, password, done) => {
-
-  console.log('local strategy', username, password) // remove when done
-
   async function loginAttempt() {
 	const client = await pool.connect()
 	try {
@@ -21,7 +18,7 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
 		else{
           let pass = md5(password)
           if (pass === result.rows[0].password) {
-            return done(null, [{username: result.rows[0].username}, {id: result.rows[0].id}]); // should this set simply to 'user'?
+            return done(null, [{username: result.rows[0].username}, {id: result.rows[0].id}]);
           } else if (pass !== result.rows[0].password) {
             return done(null, false);
           } else {

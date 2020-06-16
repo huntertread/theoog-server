@@ -1,6 +1,5 @@
 const pool = require('../pool.js');
 const md5 = require('md5');
-// const passport = require('passport');
 
 const dbcontrollers = {
   getUrl: (req, res) => {
@@ -73,44 +72,19 @@ const dbcontrollers = {
       }
     )
   },
-  // checkSessionStatus: (req, res) => {
-  //   if (req.session.passport.user !== undefined) {
-  //     // req.isAuthenticated()
-  //     console.log('authenticated')
-  //     res.status(200)
-  //     // next()
-  //     // returns true
-  //   } else {
-  //     // req.isAuthenticated()
-  //     console.log('not authed')
-  //     res.status(404)
-  //     // returns false
-  //   }
-  // },
-  // checkSessionMiddleware: (req, res, next) => {
-  //   if (req.isAuthenticated()) {
-  //     console.log('auth middlware, authed')
-  //     next()
-  //   } else {
-  //     console.log('auth middleware, not authenticated')
-  //   }
-  // },
   submitLoginForm: (req, res) => {
-    // passport.authenticate('local')
-    // console.log(req)
     if (req.body.remember) {
       req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000 // cookie expires after 30 days
-      console.log('remembered')
       res.status(200).send(req.user)
     } else {
       req.session.cookie.expires = false // cookie expires at end of session
-      console.log('expires')
       res.status(200).send(req.user)
     }
   },
   // logout: (req, res) => {
   //   console.log('logout route')
   //   // console.log(req.isAuthenticated());
+  //   req.session.passport.user !== undefined
   //   req.logout()
   //   // console.log(req.isAuthenticated());
   //   res.status(200).send('loggedout')
