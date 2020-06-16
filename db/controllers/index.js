@@ -6,7 +6,7 @@ const dbcontrollers = {
     const id = req.params.id.toString()
     pool.query(
       'SELECT * FROM urls WHERE id = $1;',
-      [id], 
+      [id],
       (err, results) => {
         if (err) {
           res.status(404).send(err)
@@ -23,7 +23,7 @@ const dbcontrollers = {
     const id = req.params.id
     pool.query(
       'SELECT * FROM urls WHERE owner = $1;',
-      [id], 
+      [id],
       (err, results) => {
         if (err) {
           res.status(404).send(err)
@@ -71,18 +71,25 @@ const dbcontrollers = {
       }
     )
   },
-  checkSessionStatus: (req, res, next) => {
+  checkSessionStatus: (req, res) => {
     if (req.session.passport.user !== undefined) {
-      req.isAuthenticated()
+      // req.isAuthenticated()
       res.status(200)
       console.log('authenticated')
-      next()
+      // next()
       // returns true
     } else {
-      req.isAuthenticated()
+      // req.isAuthenticated()
       res.status(404)
       console.log('not authed')
       // returns false
+    }
+  },
+  checkSessionMiddleware: (req, res, next) => {
+    if (req.isAuthenticated()) {
+      next()
+    } else {
+      console.log('not authenticated')
     }
   },
   submitLoginForm: (req, res) => {
