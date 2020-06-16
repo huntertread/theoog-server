@@ -1,4 +1,5 @@
 const pool = require('../pool.js');
+const md5 = require('md5');
 // const passport = require('passport');
 
 const dbcontrollers = {
@@ -60,9 +61,10 @@ const dbcontrollers = {
   },
   postNewUser: (req, res) => {
     const {username, password, email} = req.body;
+    let passHash = md5(password)
     pool.query(
       'INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *;',
-      [username, password, email],
+      [username, passHash, email],
       (err, results) => {
         if (err) {
           res.status(404).send(err)
@@ -71,28 +73,28 @@ const dbcontrollers = {
       }
     )
   },
-  checkSessionStatus: (req, res) => {
-    if (req.session.passport.user !== undefined) {
-      // req.isAuthenticated()
-      console.log('authenticated')
-      res.status(200)
-      // next()
-      // returns true
-    } else {
-      // req.isAuthenticated()
-      console.log('not authed')
-      res.status(404)
-      // returns false
-    }
-  },
-  checkSessionMiddleware: (req, res, next) => {
-    if (req.isAuthenticated()) {
-      console.log('auth middlware, authed')
-      next()
-    } else {
-      console.log('auth middleware, not authenticated')
-    }
-  },
+  // checkSessionStatus: (req, res) => {
+  //   if (req.session.passport.user !== undefined) {
+  //     // req.isAuthenticated()
+  //     console.log('authenticated')
+  //     res.status(200)
+  //     // next()
+  //     // returns true
+  //   } else {
+  //     // req.isAuthenticated()
+  //     console.log('not authed')
+  //     res.status(404)
+  //     // returns false
+  //   }
+  // },
+  // checkSessionMiddleware: (req, res, next) => {
+  //   if (req.isAuthenticated()) {
+  //     console.log('auth middlware, authed')
+  //     next()
+  //   } else {
+  //     console.log('auth middleware, not authenticated')
+  //   }
+  // },
   submitLoginForm: (req, res) => {
     // passport.authenticate('local')
     // console.log(req)
