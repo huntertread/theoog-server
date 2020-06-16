@@ -18,7 +18,9 @@ router.route('/register')
   .post(dbcontroller.postNewUser)
 
 router.route('/login')
-  .get(dbcontroller.checkSessionMiddleware(req, res), dbcontroller.checkSessionStatus)
+  .get(function(req, res) {
+    console.log('login middleware?')
+  }, dbcontroller.checkSessionStatus)
   .post(passport.authenticate('local'), dbcontroller.submitLoginForm)
 
 router.route('/logout')
