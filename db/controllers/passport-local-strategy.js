@@ -5,27 +5,27 @@ const md5 = require('md5');
 
 passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, username, password, done) => {
   async function loginAttempt() {
-	const client = await pool.connect()
-	try {
-	  client.query('SELECT * from users WHERE username = $1', [username], function(err, result) {
-		if(err) {
-		  return done(err)
-		}
-		if(result.rows[0] == null){
-          console.log('user does not exist')
-		  return done(null, false);
-		}
-		else{
-          let pass = md5(password)
-          if (pass === result.rows[0].password) {
-            return done(null, [{username: result.rows[0].username}, {id: result.rows[0].id}]);
-          } else if (pass !== result.rows[0].password) {
-            return done(null, false);
-          } else {
-            console.log('Error while checking password');
-			return done();
-          }
+    const client = await pool.connect()
+    try {
+      client.query('SELECT * from users WHERE username = $1', [username], function(err, result) {
+      if (err) {
+        return done(err)
+      }
+      if (result.rows[0] == null) {
+        console.log('user does not exist')
+        return done(null, false);
+      }
+      else {
+        let pass = md5(password)
+        if (pass === result.rows[0].password) {
+          return done(null, [{username: result.rows[0].username}, {id: result.rows[0].id}]);
+        } else if (pass !== result.rows[0].password) {
+          return done(null, false);
+        } else {
+          console.log('Error while checking password');
+        return done();
         }
+      }
 	  })
 	}
 	catch(e){throw (e);}

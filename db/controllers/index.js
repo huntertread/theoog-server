@@ -19,7 +19,7 @@ const dbcontrollers = {
       }
     )
   },
-  getAllUrls: (req, res) => {
+  getAllUserUrls: (req, res) => {
     const id = req.params.id
     pool.query(
       'SELECT * FROM urls WHERE owner = $1;',
