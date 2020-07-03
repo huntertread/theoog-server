@@ -9,7 +9,7 @@ router.route('/user/:un/url/:id')
 
 // router.route('/:id')
 //   .get(dbcontroller.getUrl)
-router.route('/url/:id)
+router.route('/url/:id')
   .get(dbcontroller.getUrl)
 
 // router.route('/getExistingUser/:un')
@@ -19,12 +19,12 @@ router.route('/user/:un')
 
 // router.route('/')
 //   .post(dbcontroller.postUrl)
-router.route('/url)
+router.route('/url')
   .post(dbcontroller.postUrl)
 
 // router.route('/register')
 //   .post(dbcontroller.postNewUser)
-router.route('/user)
+router.route('/user')
   .post(dbcontroller.postNewUser)
 
 router.route('/login')
