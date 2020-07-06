@@ -28,18 +28,3 @@ describe("Users", () => {
     });
   })
 })
-
-describe("Urls", () => {
-  describe("GET /", () => {
-    it ("should retieve a specific url", (done) => {
-      const id = 1
-      chai.request(app)
-        .get(`/url/${id}`)
-        .end((err, res) => {
-          res.should.have.status(200)
-          res.body[0].should.be.a('object')
-          done()
-        })
-    })
-  })
-})

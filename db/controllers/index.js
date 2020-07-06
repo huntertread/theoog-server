@@ -10,10 +10,10 @@ const dbcontrollers = {
       (err, results) => {
         if (err) {
           res.status(404).send(err)
+        }
+        if (results.rows.length === 0) {
+          res.status(404).send('link does not exist')
         } else {
-          if (results.rows === undefined) {
-            res.status(404).send('link does not exist')
-          }
           res.status(200).send(results.rows)
         }
       }
@@ -28,7 +28,11 @@ const dbcontrollers = {
         if (err) {
           res.status(404).send(err)
         }
-        res.status(200).send(results.rows)
+        if (results.rows.length === 0) {
+          res.status(404).send('user list does not exist')
+        } else {
+          res.status(200).send(results.rows)
+        }
       }
     )
   },
