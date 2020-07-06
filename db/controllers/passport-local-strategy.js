@@ -11,7 +11,7 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
       if (err) {
         return done(err)
       }
-      if (result.rows[0] == null) {
+      if (result.rows[0] === null) {
         console.log('user does not exist')
         return done(null, false);
       }

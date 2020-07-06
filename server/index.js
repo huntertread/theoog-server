@@ -13,12 +13,12 @@ const app = express();
 app.use(helmet());
 app.use(cors({
   origin: [
-    process.env.clientip,
-    process.env.localip,
-    process.env.http,
-    process.env.https,
-    process.env.httpw,
-    process.env.httpsw
+    process.env.CLIENTIP,
+    process.env.LOCALIP,
+    process.env.HTTP,
+    process.env.HTTPS,
+    process.env.HTTPW,
+    process.env.HTTPSW
   ]
 }));
 app.use(bodyParser.json());
@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // passport
 app.use(require('express-session')({
-  secret: 'keyboard cowboy',
+  secret: process.env.PSECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -37,7 +37,7 @@ require('../db/controllers/passport-local-strategy')
 
 app.use(morgan('dev'));
 app.use('/', router);
-const port = process.env.serverport;
+const port = process.env.SERVERPORT;
 app.listen(port, () => {
     console.log('app is listening on port:', port);
 });
