@@ -54,7 +54,11 @@ const dbcontrollers = {
         if (err) {
           res.status(404).send(err)
         }
-        res.status(200).send(results.rows)
+        if (results.rows.length === 0) {
+          res.status(404).send('user does not exist')
+        } else {
+          res.status(200).send(results.rows)
+        }
       }
     )
   },

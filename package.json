@@ -4,7 +4,7 @@
   "description": "server and db connection for wzrd url shortener",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require babel-register tests/*.js --exit",
     "start:server": "nodemon server/index.js",
     "create-db-local": "psql -U postgres < ./db/schemas.sql",
     "create-db-ec2": "sudo -u postgres psql < ./db/schemas.sql"
@@ -20,13 +20,18 @@
   },
   "homepage": "https://github.com/huntertread/wzrd-server#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "helmet": "^3.22.0",
     "md5": "^2.2.1",
+    "mocha": "^8.0.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.3",
     "passport": "^0.4.1",
